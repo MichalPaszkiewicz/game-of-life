@@ -70,7 +70,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
           }
           else{
             var currentLNIndex = cells[i][j];
-            var currentRaceIndex = cells[i][j] + 1;
+            var currentRaceIndex = cells[i][j] - 1;
             var currentRace = $scope.races[currentRaceIndex];
             
             var kill = false;
