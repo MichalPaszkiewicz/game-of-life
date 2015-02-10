@@ -49,6 +49,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
               {
                 livingNeighbours2++;
               }
+            }
           }
           if (cells[i][j] == 0 && livingNeighbours1 == 3)
           {
@@ -67,7 +68,6 @@ angular.module('app').controller('gameoflifeController', function($scope){
               nextState[i][j] = 0;
           }
        }
-     }
      }
 
      return nextState;
