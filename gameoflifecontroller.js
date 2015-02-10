@@ -17,6 +17,12 @@ angular.module('app').controller('gameoflifeController', function($scope){
     this.x = x;
     this.y = y;
   }
+  
+  $scope.races = [
+    {reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
+    {reproduction: 2, overpopulation: 4, damage: 0, colour: "lightblue"},
+    {reproduction: 2, overpopulation: 3, damage: 2, colour: "red"}
+  ];
 
   $scope.possibleNeighbours =[
             new Point(-1, 0), // 1st neighbour (-1, 0)
@@ -34,38 +40,50 @@ angular.module('app').controller('gameoflifeController', function($scope){
 
      for (var i = 0; i < cells.length; i++){
        for (var j=0; j <cells[0].length; j++){
-          var livingNeighbours1 = 0;
-          var livingNeighbours2 = 0;
+          var livingNeighbours = [];
+          for(var r = 0; r <= $scope.races.length; r++){
+            livingNeighbours.push(0);
+          }
 
           for(var k = 0; k < $scope.possibleNeighbours.length; k++){
             var possibleLife = $scope.possibleNeighbours[k];
 
             if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
-              if (cells[i +possibleLife.x][j+possibleLife.y] == 1)
-              {
-               livingNeighbours1++;
-              }
-              if (cells[i +possibleLife.x][j+possibleLife.y] == 2)
-              {
-                livingNeighbours2++;
-              }
+              livingNeighbours[cells[i +possibleLife.x][j+possibleLife.y]]++;
             }
           }
-          if (cells[i][j] == 0 && livingNeighbours1 == 3)
-          {
-              nextState[i][j] = 1;
+          
+          if(cells[i][j] == 0){
+            
+            var maxNum = 0;
+            var valWhereMaxNumAndReproducing;
+            for(var r = 1; r < livingNeighbours.length; r++){
+              if(livingNeighbours[r] >= $scope.races[r - 1].reproduction && livingNeighbours[r] > maxNum){
+                maxNum = livingNeighbours[r];
+                valWhereMaxNumAndReproducing = r;
+              }
+            }
+            
+            if(valWhereMaxNumAndReproducing != null){
+              nextState[i][j] = valWhereMaxNumAndReproducing;
+            }
           }
-          else if (cells[i][j] == 0 && livingNeighbours2 == 3)
-          {
-              nextState[i][j] = 2;
-          }
-          else if (cells[i][j] == 1 && (livingNeighbours1 < 2 || livingNeighbours1 > 3 || livingNeighbours2 > livingNeighbours1))
-          {
+          else{
+            var currentLNIndex = cells[i][j];
+            var currentRaceIndex = cells[i][j] + 1;
+            var currentRace = $scope.races[currentRaceIndex];
+            
+            var kill = false;
+            
+            for(var r = 1; r < livingNeighbours.length; r++){
+              if((r != currentLNIndex) && ($scope.races[r-1].damage * livingNeighbours[r] > livingNeighbours[currentLNIndex] * $scope.races[currentRaceIndex].damage )){
+                kill = true;
+              }
+            }
+            
+            if(kill){
               nextState[i][j] = 0;
-          }
-          else if (cells[i][j] == 2 && (livingNeighbours2 < 2 || livingNeighbours2 > 3 || livingNeighbours1 > livingNeighbours2))
-          {
-              nextState[i][j] = 0;
+            }
           }
        }
      }
@@ -80,7 +98,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
       newState.push(new Array());
 
       for (var j=0 ; j <$scope.matrix.rows; j++){
-          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? Math.ceil(Math.random() * 2) : 0));
+          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? Math.ceil(Math.random() * 3) : 0));
       }
     }
     return newState;
@@ -103,18 +121,11 @@ angular.module('app').controller('gameoflifeController', function($scope){
   }
 
   $scope.drawCell = function(cell){
-    if (cell === 1){
-      context.strokeStyle = 'red';
+    if (cell > 0){
+      context.strokeStyle = $scope.races[cell - 1].colour;
       context.beginPath();
       context.arc(($scope.gridSize/2),($scope.gridSize/2),($scope.gridSize/2.5),0,2 * Math.PI);
       context.stroke();
-    }
-    if( cell === 2){
-      context.strokeStyle = 'lightblue';
-      context.beginPath();
-      context.arc(($scope.gridSize/2),($scope.gridSize/2),($scope.gridSize/2.5),0,2 * Math.PI);
-      context.stroke();
-      
     }
   }
 
