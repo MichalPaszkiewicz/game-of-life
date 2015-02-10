@@ -59,11 +59,11 @@ angular.module('app').controller('gameoflifeController', function($scope){
           {
               nextState[i][j] = 2;
           }
-          else if (cells[i][j] == 1 && (livingNeighbours1 < 2 || livingNeighbours1 > 3 || livingNeighbours2 > livingNeighbours1 + 1))
+          else if (cells[i][j] == 1 && (livingNeighbours1 < 2 || livingNeighbours1 > 3 || livingNeighbours2 > livingNeighbours1))
           {
               nextState[i][j] = 0;
           }
-          else if (cells[i][j] == 2 && (livingNeighbours2 < 2 || livingNeighbours2 > 3 || livingNeighbours1 > livingNeighbours2 + 1))
+          else if (cells[i][j] == 2 && (livingNeighbours2 < 2 || livingNeighbours2 > 3 || livingNeighbours1 > livingNeighbours2))
           {
               nextState[i][j] = 0;
           }
