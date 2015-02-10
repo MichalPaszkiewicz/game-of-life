@@ -42,9 +42,11 @@ angular.module('app').controller('gameoflifeController', function($scope){
 
             if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
               if (cells[i +possibleLife.x][j+possibleLife.y] == 1)
-                livingNeighbours1++;
+              {
+               livingNeighbours1++;
               }
               if (cells[i +possibleLife.x][j+possibleLife.y] == 2)
+              {
                 livingNeighbours2++;
               }
           }
