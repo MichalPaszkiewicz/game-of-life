@@ -34,21 +34,33 @@ angular.module('app').controller('gameoflifeController', function($scope){
 
      for (var i = 0; i < cells.length; i++){
        for (var j=0; j <cells[0].length; j++){
-          var livingNieghbours = 0;
+          var livingNeighbours1 = 0;
+          var livingNeighbours2 = 0;
 
           for(var k = 0; k < $scope.possibleNeighbours.length; k++){
             var possibleLife = $scope.possibleNeighbours[k];
 
             if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
               if (cells[i +possibleLife.x][j+possibleLife.y] == 1)
-                livingNieghbours++;
-            }
+                livingNeighbours1++;
+              }
+              if (cells[i +possibleLife.x][j+possibleLife.y] == 2)
+                livingNeighbours2++;
+              }
           }
-          if (cells[i][j] == 0 && livingNieghbours == 3)
+          if (cells[i][j] == 0 && livingNeighbours1 == 3)
           {
               nextState[i][j] = 1;
           }
-          else if (cells[i][j] == 1 && (livingNieghbours < 2 || livingNieghbours > 3))
+          else if (cells[i][j] == 0 && livingNeighbours2 == 3)
+          {
+              nextState[i][j] = 2;
+          }
+          else if (cells[i][j] == 1 && (livingNeighbours1 < 2 || livingNeighbours1 > 3))
+          {
+              nextState[i][j] = 0;
+          }
+          else if (cells[i][j] == 2 && (livingNeighbours2 < 2 || livingNeighbours2 > 3))
           {
               nextState[i][j] = 0;
           }
