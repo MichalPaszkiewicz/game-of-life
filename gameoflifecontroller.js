@@ -81,6 +81,10 @@ angular.module('app').controller('gameoflifeController', function($scope){
               }
             }
             
+            if(livingNeighbours[currentLNIndex] >= $scope.races[currentRaceIndex].overpopulation){
+              kill = true;
+            }
+            
             if(kill){
               nextState[i][j] = 0;
             }
