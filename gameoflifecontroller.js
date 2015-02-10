@@ -65,7 +65,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
       newState.push(new Array());
 
       for (var j=0 ; j <$scope.matrix.rows; j++){
-          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? 1 : 0));
+          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? Math.ceil(Math.random() * 2) : 0));
       }
     }
     return newState;
@@ -89,10 +89,17 @@ angular.module('app').controller('gameoflifeController', function($scope){
 
   $scope.drawCell = function(cell){
     if (cell === 1){
-      context.strokeStyle = '#fff';
+      context.strokeStyle = 'red';
       context.beginPath();
       context.arc(($scope.gridSize/2),($scope.gridSize/2),($scope.gridSize/2.5),0,2 * Math.PI);
       context.stroke();
+    }
+    if( cell === 2){
+      context.strokeStyle = 'lightblue';
+      context.beginPath();
+      context.arc(($scope.gridSize/2),($scope.gridSize/2),($scope.gridSize/2.5),0,2 * Math.PI);
+      context.stroke();
+      
     }
   }
 
