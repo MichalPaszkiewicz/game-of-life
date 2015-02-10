@@ -64,7 +64,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
               }
             }
             
-            if(valWhereMaxNumAndReproducing != null){
+            if(valWhereMaxNumAndReproducing != null && valWhereMaxNumAndReproducing != undefined){
               nextState[i][j] = valWhereMaxNumAndReproducing;
             }
           }
@@ -76,12 +76,12 @@ angular.module('app').controller('gameoflifeController', function($scope){
             var kill = false;
             
             for(var r = 1; r < livingNeighbours.length; r++){
-              if((r != currentLNIndex) && ($scope.races[r-1].damage * livingNeighbours[r] > livingNeighbours[currentLNIndex] * $scope.races[currentRaceIndex].damage )){
+              if((r != currentLNIndex) && ($scope.races[r-1].damage * livingNeighbours[r] > livingNeighbours[currentLNIndex] * currentRace.damage )){
                 kill = true;
               }
             }
             
-            if(livingNeighbours[currentLNIndex] >= $scope.races[currentRaceIndex].overpopulation){
+            if(livingNeighbours[currentLNIndex] >= currentRace.overpopulation){
               kill = true;
             }
             
