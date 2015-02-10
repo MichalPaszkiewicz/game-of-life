@@ -48,8 +48,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
           for(var k = 0; k < $scope.possibleNeighbours.length; k++){
             var possibleLife = $scope.possibleNeighbours[k];
 
-            if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
-              livingNeighbours[cells[i +possibleLife.x][j+possibleLife.y]]++;
+            if (!!cells[i + possibleLife.x ] && !!cells[i + possibleLife.x][j + possibleLife.y]){
+              livingNeighbours[ cells[i + possibleLife.x][j + possibleLife.y] ]++;
             }
           }
           
@@ -76,12 +76,12 @@ angular.module('app').controller('gameoflifeController', function($scope){
             var kill = false;
             
             for(var r = 1; r < livingNeighbours.length; r++){
-              if((r != currentLNIndex) && ($scope.races[r-1].damage * livingNeighbours[r] > livingNeighbours[currentLNIndex] * currentRace.damage )){
+              if((r != currentLNIndex) && ( ($scope.races[r-1].damage * livingNeighbours[r]) > (livingNeighbours[currentLNIndex] * currentRace.damage) )){
                 kill = true;
               }
             }
             
-            if(livingNeighbours[currentLNIndex] >= currentRace.overpopulation){
+            if(livingNeighbours[currentLNIndex] < currentRace.reproduction || livingNeighbours[currentLNIndex] >= currentRace.overpopulation){
               kill = true;
             }
             
