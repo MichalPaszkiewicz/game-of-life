@@ -11,3 +11,8 @@ canvas{
 	color: white;
 	cursor: pointer;
 }
+
+.btn:hover{
+	color: yellow;
+	background: rgb(76, 71, 71);
+}
