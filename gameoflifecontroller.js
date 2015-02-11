@@ -90,7 +90,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
               }
             }
             if(maxR != undefined && ((cellRace.damage * livingNeighbours[cellRaceIndex]) < maxScore)){
-              nextState[i][j] = maxR;
+              nextState[i][j] = maxR + 1;
             }
           }
           
