@@ -58,7 +58,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
             var maxNum = 0;
             var valWhereMaxNumAndReproducing;
             for(var r = 1; r < livingNeighbours.length; r++){
-              if(livingNeighbours[r] >= $scope.races[r - 1].reproduction && livingNeighbours[r] > maxNum){
+              var relevantRace = $scope.races[r - 1];
+              if(livingNeighbours[r] >= relevantRace.reproduction && livingNeighbours[r] < relevantRace.overpopulation && livingNeighbours[r] > maxNum){
                 maxNum = livingNeighbours[r];
                 valWhereMaxNumAndReproducing = r;
               }
