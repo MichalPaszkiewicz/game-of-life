@@ -18,11 +18,12 @@ angular.module('app').controller('gameoflifeController', function($scope){
     this.y = y;
   }
   
+  // Note: survival is worse as underpopulation goes up
   $scope.races = [
-    {reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
-    {reproduction: 3, overpopulation: 4, damage: 0, colour: "lightblue"},
-    {reproduction: 4, overpopulation: 5, damage: 2, colour: "red"},
-    {reproduction: 3, overpopulation: 4, damage: 2, colour: "blue"}
+    {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
+    {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 0, colour: "lightblue"},
+    {underpopulation: 3, reproduction: 4, overpopulation: 5, damage: 2, colour: "red"},
+    {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 2, colour: "blue"}
   ];
 
   $scope.possibleNeighbours =[
@@ -69,7 +70,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
           }
           
           // standard death
-          if (cellRaceIndex > -1 && (livingNeighbours[cellRaceIndex] < 2 || livingNeighbours[cellRaceIndex] >= cellRace.overpopulation))
+          if (cellRaceIndex > -1 && (livingNeighbours[cellRaceIndex] < cellRace.underpopulation || livingNeighbours[cellRaceIndex] >= cellRace.overpopulation))
           {
             nextState[i][j] = 0;
           }
