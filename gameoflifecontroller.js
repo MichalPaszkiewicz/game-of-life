@@ -41,6 +41,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
      for (var i = 0; i < cells.length; i++){
        for (var j=0; j <cells[0].length; j++){
           var cellRaceIndex = cells[i][j] - 1;
+          var cellRace = $scope.races[cellRaceIndex];
+          
                   var livingNeighbours = [];
                   
                   for(var r = 0; r < $scope.races.length; r++){
@@ -67,17 +69,14 @@ angular.module('app').controller('gameoflifeController', function($scope){
           }
           
           // standard death
-          for(var r = 0; r < $scope.races.length; r++){
-            var tempRace = $scope.races[r];
-            if (cellRaceIndex == r && (livingNeighbours[r] < 2 || livingNeighbours[r] >= tempRace.overpopulation))
-            {
-                nextState[i][j] = 0;
-            }
+          if (cellRaceIndex > -1 && (livingNeighbours[cellRaceIndex] < 2 || livingNeighbours[cellRaceIndex] >= cellRace.overpopulation))
+          {
+            nextState[i][j] = 0;
           }
+          
           
           // war
           if(cells[i][j] > 0){
-            var cellRace = $scope.races[cellRaceIndex];
             var maxScore = 0;
             var maxR;
             for(var r = 0; r < $scope.races.length; r++){
