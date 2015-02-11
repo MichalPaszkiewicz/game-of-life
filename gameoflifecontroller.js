@@ -34,13 +34,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
             new Point( 0,-1), // 7th neighbour ( 0,-1)
             new Point(-1,-1),]; // 8th neighbour (-1,-1)
 
-
-  $scope.getNextState = function(cells){
-     var nextState = angular.copy(cells);
-
-     for (var i = 0; i < cells.length; i++){
-       for (var j=0; j <cells[0].length; j++){
-          var livingNeighbours = [];
+  $scope.reproduce = function(cells, nextState, i,j){
+              var livingNeighbours = [];
           for(var r = 0; r <= $scope.races.length; r++){
             livingNeighbours.push(0);
           }
@@ -89,6 +84,31 @@ angular.module('app').controller('gameoflifeController', function($scope){
             if(kill){
               nextState[i][j] = 0;
             }
+          }
+  }
+
+  $scope.getNextState = function(cells){
+     var nextState = angular.copy(cells);
+
+     for (var i = 0; i < cells.length; i++){
+       for (var j=0; j <cells[0].length; j++){
+                  var livingNieghbours = 0;
+
+          for(var k = 0; k < $scope.possibleNeighbours.length; k++){
+            var possibleLife = $scope.possibleNeighbours[k];
+
+            if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
+              if (cells[i +possibleLife.x][j+possibleLife.y] == 1)
+                livingNieghbours++;
+            }
+          }
+          if (cells[i][j] == 0 && livingNieghbours == 3)
+          {
+              nextState[i][j] = 1;
+          }
+          else if (cells[i][j] == 1 && (livingNieghbours < 2 || livingNieghbours > 3))
+          {
+              nextState[i][j] = 0;
           }
        }
      }
