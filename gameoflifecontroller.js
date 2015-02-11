@@ -104,11 +104,11 @@ angular.module('app').controller('gameoflifeController', function($scope){
           }
           
           var tempRace = $scope.races[0];
-          if (cells[i][j] == 0 && livingNeighbours >= tempRace.reproduction && livingNeighbours < tempRace.overPopulation)
+          if (cells[i][j] == 0 && livingNeighbours >= tempRace.reproduction && livingNeighbours < tempRace.overpopulation)
           {
               nextState[i][j] = 1;
           }
-          else if (cells[i][j] == 1 && (livingNeighbours < 2 || livingNeighbours > tempRace.overPopulation))
+          else if (cells[i][j] == 1 && (livingNeighbours < 2 || livingNeighbours > tempRace.overpopulation))
           {
               nextState[i][j] = 0;
           }
