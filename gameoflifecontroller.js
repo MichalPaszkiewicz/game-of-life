@@ -22,7 +22,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
     {reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
     {reproduction: 3, overpopulation: 4, damage: 0, colour: "lightblue"},
     {reproduction: 4, overpopulation: 5, damage: 2, colour: "red"},
-    //{reproduction: 3, overpopulation: 4, damage: 30, colour: "orange"}
+    {reproduction: 3, overpopulation: 4, damage: 30, colour: "blue"}
   ];
 
   $scope.possibleNeighbours =[
