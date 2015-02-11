@@ -51,7 +51,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
             if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
               
               if (cells[i +possibleLife.x][j+possibleLife.y] > 0)
-                livingNeighbours[cells[i +possibleLife.x][j+possibleLife.y]]++;
+                livingNeighbours[cells[i +possibleLife.x][j+possibleLife.y] - 1]++;
             }
           }
           
