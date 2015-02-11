@@ -147,7 +147,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
   }
 
   $scope.drawCell = function(cell){
-    if (cell > 0){
+    if (cell > 0 && !$scope.deleted){
       context.strokeStyle = $scope.races[cell - 1].colour;
       context.beginPath();
       context.arc(($scope.gridSize/2),($scope.gridSize/2),($scope.gridSize/2.5),0,2 * Math.PI);
