@@ -32,6 +32,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
   
   $scope.genocide = function($index){
     $scope.races.splice($index, 1);
+    $scope.deleted = true;
     $scope.restart();
   }
 
@@ -44,6 +45,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
             new Point( 1,-1), // 6th neighbour ( 1,-1)
             new Point( 0,-1), // 7th neighbour ( 0,-1)
             new Point(-1,-1),]; // 8th neighbour (-1,-1)
+
+  $scope.deleted = false;
 
   $scope.getNextState = function(cells){
      var nextState = angular.copy(cells);
@@ -153,6 +156,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
   }
 
   $scope.initState = function(){
+    $scope.deleted = false;
     $scope.matrix.cells = $scope.getNewState();
     $scope.initialState = angular.copy($scope.matrix.cells);
     canvas.height = $scope.matrix.rows * $scope.gridSize;
@@ -164,7 +168,9 @@ angular.module('app').controller('gameoflifeController', function($scope){
   }
 
   $scope.updateState = function(){
-    $scope.matrix.cells = $scope.getNextState($scope.matrix.cells);
+    if($scope.deleted){
+      $scope.matrix.cells = $scope.getNextState($scope.matrix.cells);
+    }
   };
 
   function animate() {
