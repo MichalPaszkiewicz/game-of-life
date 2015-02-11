@@ -168,7 +168,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
   }
 
   $scope.updateState = function(){
-    if($scope.deleted){
+    if(!$scope.deleted){
       $scope.matrix.cells = $scope.getNextState($scope.matrix.cells);
     }
   };
