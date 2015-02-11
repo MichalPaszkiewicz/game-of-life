@@ -34,81 +34,33 @@ angular.module('app').controller('gameoflifeController', function($scope){
             new Point( 0,-1), // 7th neighbour ( 0,-1)
             new Point(-1,-1),]; // 8th neighbour (-1,-1)
 
-  $scope.reproduce = function(cells, nextState, i,j){
-              var livingNeighbours = [];
-          for(var r = 0; r <= $scope.races.length; r++){
-            livingNeighbours.push(0);
-          }
-
-          for(var k = 0; k < $scope.possibleNeighbours.length; k++){
-            var possibleLife = $scope.possibleNeighbours[k];
-
-            if (!!cells[i + possibleLife.x ] && !!cells[i + possibleLife.x][j + possibleLife.y]){
-              livingNeighbours[ cells[i + possibleLife.x][j + possibleLife.y] ]++;
-            }
-          }
-          
-          if(cells[i][j] == 0){
-            
-            var maxNum = 0;
-            var valWhereMaxNumAndReproducing;
-            for(var r = 1; r < livingNeighbours.length; r++){
-              var relevantRace = $scope.races[r - 1];
-              if(livingNeighbours[r] >= relevantRace.reproduction && livingNeighbours[r] < relevantRace.overpopulation && livingNeighbours[r] > maxNum){
-                maxNum = livingNeighbours[r];
-                valWhereMaxNumAndReproducing = r;
-              }
-            }
-            
-            if(valWhereMaxNumAndReproducing != null && valWhereMaxNumAndReproducing != undefined){
-              nextState[i][j] = valWhereMaxNumAndReproducing;
-            }
-          }
-          else{
-            var currentLNIndex = cells[i][j];
-            var currentRaceIndex = cells[i][j] - 1;
-            var currentRace = $scope.races[currentRaceIndex];
-            
-            var kill = false;
-            
-            /*for(var r = 1; r < livingNeighbours.length; r++){
-              if((r != currentLNIndex) && ( ($scope.races[r-1].damage * livingNeighbours[r]) > (livingNeighbours[currentLNIndex] * currentRace.damage) )){
-                kill = true;
-              }
-            }*/
-            
-            if(livingNeighbours[currentLNIndex] < currentRace.reproduction || livingNeighbours[currentLNIndex] >= currentRace.overpopulation){
-              kill = true;
-            }
-            
-            if(kill){
-              nextState[i][j] = 0;
-            }
-          }
-  }
-
   $scope.getNextState = function(cells){
      var nextState = angular.copy(cells);
 
      for (var i = 0; i < cells.length; i++){
        for (var j=0; j <cells[0].length; j++){
-                  var livingNeighbours = 0;
+                  var livingNeighbours = [];
+                  
+                  for(var r = 0; r < $scope.races.length; r++){
+                    livingNeighbours.push(0);
+                  }
 
           for(var k = 0; k < $scope.possibleNeighbours.length; k++){
             var possibleLife = $scope.possibleNeighbours[k];
 
             if (!!cells[i +possibleLife.x ] && !!cells[i +possibleLife.x][j+possibleLife.y]){
               if (cells[i +possibleLife.x][j+possibleLife.y] == 1)
-                livingNeighbours++;
+                livingNeighbours[0]++;
             }
           }
           
+          for(var r = 0; r < $scope.races.length; r++)
           var tempRace = $scope.races[0];
-          if (cells[i][j] == 0 && livingNeighbours >= tempRace.reproduction && livingNeighbours < tempRace.overpopulation)
+          if (cells[i][j] == 0 && livingNeighbours[0] >= tempRace.reproduction && livingNeighbours[0] < tempRace.overpopulation)
           {
               nextState[i][j] = 1;
           }
-          else if (cells[i][j] == 1 && (livingNeighbours < 2 || livingNeighbours >= tempRace.overpopulation))
+          else if (cells[i][j] == 1 && (livingNeighbours[0] < 2 || livingNeighbours[0] >= tempRace.overpopulation))
           {
               nextState[i][j] = 0;
           }
