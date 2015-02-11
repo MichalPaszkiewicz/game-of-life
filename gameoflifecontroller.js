@@ -92,6 +92,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
             if(maxR != undefined && (($scope.races[cells[i][j] - 1].damage * livingNeighbours[cells[i][j] - 1]) < maxScore)){
               nextState[i][j] = maxR;
+              console.log("maxScore: " + maxScore + " maxR: " + maxR);
             }
           }
           
