@@ -55,7 +55,6 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
           }
           
-          for(var r = 0; r < $scope.races.length; r++)
           var tempRace = $scope.races[0];
           if (cells[i][j] == 0 && livingNeighbours[0] >= tempRace.reproduction && livingNeighbours[0] < tempRace.overpopulation)
           {
