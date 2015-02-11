@@ -8,7 +8,7 @@
 	</head>
 	<body ng-controller="gameoflifeController">
 		<h1>The game of multicultural life</h1>
-		<p>Largely stolen from <a href="http://james-johnstone.me/ai/gameoflife">James Johnstone's angular js implementation of the game of life.</a></p>
+		<p>Display and controller adapted from <a href="http://james-johnstone.me/ai/gameoflife">James Johnstone's angular js implementation of the game of life.</a></p>
 		<canvas id="game-of-life-canvas" height="470" width="1900"></canvas>
 		<div class="well"><div ng-click="initState()" class="btn btn-default">Reset</div><div ng-click="restart()" class="btn btn-default">Restart</div><div>Speed:<input type="range" name="speed" min="0" max="20" ng-model="speed" class="ng-pristine ng-valid"></div><div>Matrix Size:<input type="range" name="columns" min="20" max="100" ng-model="matrix.columns" class="ng-pristine ng-valid"><input type="range" name="columns" min="20" max="60" ng-model="matrix.rows" class="ng-pristine ng-valid"></div><div>Population density:<input type="range" name="columns" min="5" max="50" ng-model="matrix.initialPopulation" class="ng-pristine ng-valid"></div></div>
 		
