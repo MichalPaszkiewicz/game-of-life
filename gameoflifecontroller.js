@@ -32,6 +32,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
   
   $scope.genocide = function($index){
     $scope.races.splice($index, 1);
+    $scope.restart();
   }
 
   $scope.possibleNeighbours =[
