@@ -22,8 +22,9 @@ angular.module('app').controller('gameoflifeController', function($scope){
   $scope.races = [
     {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 0, colour: "lightblue"},
     {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
-    {underpopulation: 3, reproduction: 4, overpopulation: 5, damage: 4, colour: "red"},
-    {underpopulation: 4, reproduction: 5, overpopulation: 6, damage: 20, colour: "grey"},
+    {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 1, colour: "red"},
+    //{underpopulation: 3, reproduction: 4, overpopulation: 5, damage: 4, colour: "red"},
+    //{underpopulation: 4, reproduction: 5, overpopulation: 6, damage: 20, colour: "grey"},
   ];
 
   $scope.possibleNeighbours =[
