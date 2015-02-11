@@ -53,6 +53,10 @@ angular.module('app').controller('gameoflifeController', function($scope){
           var cellRaceIndex = cells[i][j] - 1;
           var cellRace = $scope.races[cellRaceIndex];
           
+          if(cellRaceIndex > -1 && (cellRace == null || cellRace == undefined)){
+            return;
+          }
+          
                   var livingNeighbours = [];
                   
                   for(var r = 0; r < $scope.races.length; r++){
