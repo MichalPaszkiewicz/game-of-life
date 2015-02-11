@@ -55,6 +55,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
           }
           
+          // standard reproduce
           for(var r = 0; r < $scope.races.length; r++){
             var tempRace = $scope.races[r];
             if (cells[i][j] == 0 && livingNeighbours[r] >= tempRace.reproduction && livingNeighbours[r] < tempRace.overpopulation)
@@ -63,6 +64,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
           }
           
+          // standard death
           for(var r = 0; r < $scope.races.length; r++){
             var tempRace = $scope.races[r];
             if (cells[i][j] == (r+1) && (livingNeighbours[r] < 2 || livingNeighbours[r] >= tempRace.overpopulation))
@@ -70,6 +72,27 @@ angular.module('app').controller('gameoflifeController', function($scope){
                 nextState[i][j] = 0;
             }
           }
+          
+          // war
+          if(cells[i][j] > 0){
+            var maxScore = 0;
+            var maxR;
+            for(var r = 0; r < $scope.races.length; r++){
+              if( (r + 1) != cells[i][j]){
+              var tempRace = $scope.races[r];
+              var score = livingNeighbours[r] * tempRace.damage;
+              
+                if(score > maxScore && score && livingNeighbours[cells[i][j]]){
+                  maxScore = score;
+                  maxR = r;
+                }
+              }
+            }
+            if(maxR != undefined && (($scope.races[cells[i][j]].damage * livingNeighbours[cells[i][j]]) < maxScore)){
+              nextState[i][j] = maxR;
+            }
+          }
+          
        }
      }
 
