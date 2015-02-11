@@ -82,13 +82,13 @@ angular.module('app').controller('gameoflifeController', function($scope){
               var tempRace = $scope.races[r];
               var score = livingNeighbours[r] * tempRace.damage;
               
-                if(score > maxScore && score && livingNeighbours[cells[i][j]]){
+                if(score > maxScore && score && livingNeighbours[cells[i][j] - 1]){
                   maxScore = score;
                   maxR = r;
                 }
               }
             }
-            if(maxR != undefined && (($scope.races[cells[i][j]].damage * livingNeighbours[cells[i][j]]) < maxScore)){
+            if(maxR != undefined && (($scope.races[cells[i][j] - 1].damage * livingNeighbours[cells[i][j] - 1]) < maxScore)){
               nextState[i][j] = maxR;
             }
           }
