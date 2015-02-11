@@ -18,7 +18,10 @@
 				<span>Overpopulation: </span><input type="number" ng-model="race.overpopulation">
 				<span>Damage: </span><input type="number" ng-model="race.damage">
 				<span>Colour: </span><input ng-model="race.colour">
+				<span class="delete" ng-click="genocide($index)">Delete</span>
 			</div>
+			
+			<div class="btn" ng-click="addRace()">Add race</div>
 		</div>
 	</body>
 
