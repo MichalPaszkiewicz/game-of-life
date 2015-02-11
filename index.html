@@ -12,13 +12,14 @@
 		<div class="well"><div ng-click="initState()" class="btn btn-default">Reset</div><div ng-click="restart()" class="btn btn-default">Restart</div><div>Speed:<input type="range" name="speed" min="0" max="20" ng-model="speed" class="ng-pristine ng-valid"></div><div>Matrix Size:<input type="range" name="columns" min="20" max="100" ng-model="matrix.columns" class="ng-pristine ng-valid"><input type="range" name="columns" min="20" max="60" ng-model="matrix.rows" class="ng-pristine ng-valid"></div><div>Population density:<input type="range" name="columns" min="5" max="50" ng-model="matrix.initialPopulation" class="ng-pristine ng-valid"></div></div>
 		
 		<div class="races">
-			<div ng-repeat="race in races">
+			<h2>Races</h2>
+			<div style="padding: 12px" ng-repeat="race in races">
 				<span>Underpopulation: </span><input type="number" ng-model="race.underpopulation">
 				<span>Reproduction: </span><input type="number" ng-model="race.reproduction">
 				<span>Overpopulation: </span><input type="number" ng-model="race.overpopulation">
 				<span>Damage: </span><input type="number" ng-model="race.damage">
 				<span>Colour: </span><input ng-model="race.colour">
-				<span class="delete" ng-click="genocide($index)">Delete</span>
+				<span class="btn" ng-click="genocide($index)">Delete</span>
 			</div>
 			
 			<div class="btn" ng-click="addRace()">Add race</div>
