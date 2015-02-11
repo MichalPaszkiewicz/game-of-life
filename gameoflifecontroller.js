@@ -21,7 +21,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
   $scope.races = [
     {reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
     {reproduction: 3, overpopulation: 4, damage: 0, colour: "lightblue"},
-    {reproduction: 3, overpopulation: 4, damage: 2, colour: "red"}
+    //{reproduction: 3, overpopulation: 4, damage: 2, colour: "red"}
   ];
 
   $scope.possibleNeighbours =[
@@ -106,7 +106,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
       newState.push(new Array());
 
       for (var j=0 ; j <$scope.matrix.rows; j++){
-          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? Math.ceil(Math.random() * 3) : 0));
+          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? Math.ceil(Math.random() * $scope.races.length) : 0));
       }
     }
     return newState;
