@@ -53,10 +53,6 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
           }
           
-          if(cells[i][j] == null || cells[i][j] == undefined){
-            console.log("null");
-          }
-          
           if(cells[i][j] == 0){
             
             var maxNum = 0;
