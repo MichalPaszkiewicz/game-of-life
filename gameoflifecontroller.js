@@ -22,7 +22,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
     {reproduction: 3, overpopulation: 4, damage: 1, colour: "yellow"},
     {reproduction: 3, overpopulation: 4, damage: 0, colour: "lightblue"},
     {reproduction: 3, overpopulation: 4, damage: 2, colour: "red"},
-    {reproduction: 3, overpopulation: 5, damage: 0, colour: "green"},
+    {reproduction: 3, overpopulation: 4, damage: 0, colour: "green"},
     {reproduction: 4, overpopulation: 5, damage: 10, colour: "orange"}
   ];
 
