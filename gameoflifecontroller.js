@@ -25,6 +25,14 @@ angular.module('app').controller('gameoflifeController', function($scope){
     {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 2, colour: "red"},
     {underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 3, colour: "grey"},
   ];
+  
+  $scope.addRace = function(){
+    $scope.races.push({underpopulation: 2, reproduction: 3, overpopulation: 4, damage: 1, colour: "white"})
+  }
+  
+  $scope.genocide = function($index){
+    $scope.races.splice($index, 1);
+  }
 
   $scope.possibleNeighbours =[
             new Point(-1, 0), // 1st neighbour (-1, 0)
