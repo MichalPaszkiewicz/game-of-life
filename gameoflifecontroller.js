@@ -108,7 +108,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
           {
               nextState[i][j] = 1;
           }
-          else if (cells[i][j] == 1 && (livingNeighbours < 2 || livingNeighbours > tempRace.overpopulation))
+          else if (cells[i][j] == 1 && (livingNeighbours < 2 || livingNeighbours > 3))
           {
               nextState[i][j] = 0;
           }
