@@ -103,7 +103,7 @@ angular.module('app').controller('gameoflifeController', function($scope){
       newState.push(new Array());
 
       for (var j=0 ; j <$scope.matrix.rows; j++){
-          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? Math.ceil(Math.random() * $scope.races.length) : 0));
+          newState[i].push((Math.random() * 100 <= $scope.matrix.initialPopulation ? 1 /*Math.ceil(Math.random() * $scope.races.length)*/ : 0));
       }
     }
     return newState;
