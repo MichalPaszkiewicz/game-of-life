@@ -53,6 +53,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
           }
           
+          console.log(livingNeighbours.join());
+          
           if(cells[i][j] == 0){
             
             var maxNum = 0;
