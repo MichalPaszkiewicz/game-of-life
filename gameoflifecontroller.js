@@ -82,9 +82,8 @@ angular.module('app').controller('gameoflifeController', function($scope){
             var maxR;
             for(var r = 0; r < $scope.races.length; r++){
               if( (r + 1) != cells[i][j]){
-              var tempRace = $scope.races[r];
-              var score = livingNeighbours[r] * tempRace.damage;
-              
+                var tempRace = $scope.races[r];
+                var score = livingNeighbours[r] * tempRace.damage;
                 if(score > maxScore){
                   maxScore = score;
                   maxR = r;
