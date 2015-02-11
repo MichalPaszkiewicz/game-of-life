@@ -55,14 +55,20 @@ angular.module('app').controller('gameoflifeController', function($scope){
             }
           }
           
-          var tempRace = $scope.races[0];
-          if (cells[i][j] == 0 && livingNeighbours[0] >= tempRace.reproduction && livingNeighbours[0] < tempRace.overpopulation)
-          {
-              nextState[i][j] = 1;
+          for(var r = 0; r < $scope.races.length; r++){
+            var tempRace = $scope.races[r];
+            if (cells[i][j] == 0 && livingNeighbours[r] >= tempRace.reproduction && livingNeighbours[r] < tempRace.overpopulation)
+            {
+                nextState[i][j] = r + 1;
+            }
           }
-          else if (cells[i][j] == 1 && (livingNeighbours[0] < 2 || livingNeighbours[0] >= tempRace.overpopulation))
-          {
-              nextState[i][j] = 0;
+          
+          for(var r = 0; r < $scope.races.length; r++){
+            var tempRace = $scope.races[r];
+            if (cells[i][j] == (r+1) && (livingNeighbours[r] < 2 || livingNeighbours[r] >= tempRace.overpopulation))
+            {
+                nextState[i][j] = 0;
+            }
           }
        }
      }
